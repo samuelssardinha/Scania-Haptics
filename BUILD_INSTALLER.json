@@ -1,12 +1,10 @@
 {
-  "ISCCSHA256": "F02FA0E5F237B47D7ED1EDAE9B991866EC94FE02AF61EB6A73E94F92FE8E0604",
-  "InstallerFileVersion": "2.3.0.17",
-  "InstallerDisplayVersion": "2.3.0 RC11 Completa",
-  "Signature": "NotSigned",
-  "PayloadFiles": 293,
-  "PublishExitCode": 0,
-  "HelperPublishExitCode": 0,
-  "DllBuildExitCode": 0,
-  "ISCCExitCode": 0,
-  "ProductionSetupExecuted": false
+  "AppVersion": "2.3.0.18",
+  "HelperVersion": "2.3.0.17",
+  "DllVersion": "2.3.0.12",
+  "NativeDllUnchanged": true,
+  "FirmwareChanged": false,
+  "SetupSigned": false,
+  "ProductionSetupExecuted": false,
+  "SourceCommit": "a830083d0dd55eb3e19c1ade91993c413c20ea5a"
 }

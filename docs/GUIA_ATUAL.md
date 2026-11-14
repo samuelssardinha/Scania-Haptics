@@ -1,6 +1,12 @@
 # Guia da versão atual
 
-Referência: publicação de 14/11/2026, RC11 Completa, App/gerenciador 2.3.0.17, DLL 2.3.0.12. A pasta histórica v2.2.12 do projeto não indica a versão do aplicativo atual.
+Referência: RC11.18 de 14/11/2026, App 2.3.0.18, gerenciador 2.3.0.17, DLL 2.3.0.12. A pasta histórica v2.2.12 do projeto não indica a versão do aplicativo atual.
+
+## Posição e restauração da HUD
+
+Abra **HUD e instrumentos → Layout e mouse**. A primeira seção traz **Posição da HUD: Topo / Parte inferior**, margens independentes e **Restaurar HUD padrão**. Novas configurações usam Topo, Dock compacta, paleta Titanium e placas no limite da via/cruise. A restauração mantém ativação, monitor e atalho, sem alterar motores, COM ou inicialização do Windows.
+
+Configurações antigas de tema/layout/formatos são preservadas. Use **Usar padrão: topo + Titanium + placas** para aplicar o novo preset sem restaurar os demais ajustes visuais. O cálculo considera painel, régua e luzes para que a HUD completa caiba no topo.
 
 ## Componentes e dados
 
@@ -67,7 +73,7 @@ Referências completas de offsets e sincronismo: [V4](PROTOCOLO_TELEMETRIA_V4.md
 
 ## Compilação e distribuição
 
-Os fontes originais são privados; este repositório público não permite reconstruir o App/DLL por si só. No workspace privado: SDK .NET 10.0.403 fixado por global.json, runtime e System.IO.Ports 10.0.14, MSVC C++17 x64 e Inno Setup 6.7.4. O builder completo é `tools/Preparar_RC11_Completa.ps1`, com snapshot commitado, destinos novos e locks do compilador. Ele publica Release win-x64 autocontido, compila DLL `/MT` com recurso de versão e verifica PE, manifestos e retornos.
+Os fontes originais são privados; este repositório público não permite reconstruir o App/DLL por si só. No workspace privado: SDK .NET 10.0.403 fixado por global.json, runtime e System.IO.Ports 10.0.14, MSVC C++17 x64 e Inno Setup 6.7.4. A RC11.18 usa `tools/Preparar_HUD_Topo.ps1`: compila o App a partir de snapshot commitado, reaproveita DLL/gerenciador/runtime/ícone verificados da RC11 anterior e gera instalador em destino novo. O builder nativo anterior é `tools/Preparar_RC11_Completa.ps1`, que compila a DLL `/MT` com recurso de versão. Ambos verificam retornos e manifestos.
 
 O script antigo COMPILAR_DLL.bat não é a receita exata desta release: não inclui o recurso de versão nem explicita `/MT`. Scripts de build e instalação têm finalidades diferentes; não execute instaladores para verificar compilação. Nenhum SDK, compilador ou firmware binário integra os downloads públicos.
 

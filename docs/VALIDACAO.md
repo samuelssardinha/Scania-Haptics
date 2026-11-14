@@ -1,40 +1,22 @@
-# Validação da publicação — 14/11/2026
+# Validação RC11.18 — 14/11/2026
 
-Versão candidata RC11 Completa: App/gerenciador 2.3.0.17; DLL x64 2.3.0.12. Resultados abaixo foram executados nesta sessão com fontes locais e fixtures isoladas. Não incluem instalação pessoal, ETS2 ou hardware.
+App 2.3.0.18; gerenciador 2.3.0.17; DLL x64 2.3.0.12. Atualização visual: posição Topo/Parte inferior, restauração da HUD e padrões Topo, Dock compacta, Titanium e placas do limite/cruise.
 
-| Suíte | Grupos aprovados | Ambiente |
-|---|---:|---|
-| Firmware host | 19 | Sketch real compilado com stubs, sem ESP32 |
-| App STOP/isolamento | 15 | Transportes simulados |
-| Serial | 10 | Worker real, transporte simulado, sem COM física |
-| Temas/persistência | 12 | Após correção do teste das cores do sistema |
-| HUD | 165 | Renderização e formulários com doubles; inclui 6.000 frames de teste |
-| Mapas legados MMF | 4 | Mapas isolados |
-| Instância única | 1 | Processos de teste |
-| LEDs G29/G923 | 15 | Transporte simulado |
-| Régua RPM | 19 | Renderização e limites |
-| Serviço de plugin | 14 | Diretórios e PE sintéticos, sem jogo real |
-| Contratos nativos/C#, extensões e carregamento DLL | 21 | Headers SDK locais, fixtures recíprocas e DLL real |
-| **Total** | **295** | **Nenhum desses grupos terminou com falha** |
+| Suíte reexecutada | Grupos aprovados |
+|---|---:|
+| HUD completa, incluindo quatro grupos novos de posição/restauração | 169 |
+| Temas, persistência e restauração | 12 |
+| App STOP, isolamento e estados operacionais | 15 |
+| **Total desta atualização** | **196** |
 
-A execução inicial parou no teste que aplicava contraste >=4,5 às cores escolhidas pelo Windows. Nesta sessão, Highlight=#0078D7 e HighlightText=#FFFFFF produzem razão ligeiramente inferior a 4,5. O teste foi corrigido para exigir preservação das cores de acessibilidade do sistema; o contraste mínimo continua exigido das paletas escolhidas pelo aplicativo. A suíte de temas foi reexecutada e passou. Não houve alteração das cores do App ou recompilação dos binários distribuídos.
+As três execuções finais terminaram com código 0 e nenhuma falha. A HUD inclui 6.000 frames de ensaio de recursos. Os testes usam transportes simulados e formulários de teste, sem COM física ou motores.
 
-Na primeira chamada do smoke test da DLL foi informado um caminho inexistente na pasta histórica da release. Após extrair a DLL real do portátil verificado e informar seu caminho correto, o carregamento/exports e a suíte completa passaram. Essa tentativa inicial não foi contabilizada como aprovação.
+Os grupos novos verificam composição com painel, régua e luzes; três DPI, três layouts e monitores com origens negativas; posição e margens persistentes; atualização real da prévia sem serial; e restauração preservando todos os ajustes não visuais. As expectativas antigas de layout/tema padrão foram atualizadas para Dock/Titanium; cenários específicos de faixa agrupada passaram a selecionar esse layout explicitamente. A primeira regressão identificou essas premissas antigas e falta de ajuda em um botão novo; as correções foram verificadas na execução completa final.
 
-## Integridade
+App Release win-x64 autocontido compilado com SDK 10.0.403 e runtime 10.0.14. Instalador Inno Setup gerado com versão numérica 2.3.0.18, mesmo AppId e opções de atualização/backup anteriores; não foi executado na instalação pessoal. A DLL, o gerenciador, runtime, avisos e ícone foram reaproveitados do pacote anterior verificado. O portátil novo teve todas as 295 entradas verificadas e não contém fontes, objetos, configuração pessoal ou firmware.
 
-- Hashes de todos os arquivos da release de origem conferidos.
-- Todos os fontes/recursos listados no manifesto de compilação correspondem ao workspace atual por SHA256; conferido também o conjunto de arquivos de produção, excluindo objetos gerados.
-- Portátil: 294 entradas; as 293 entradas do manifesto foram lidas e verificadas individualmente. O arquivo adicional é o próprio manifesto SHA256.
-- Setup e portátil preservam os bytes originais. DLL nativa e ícone estão no portátil e no payload do setup segundo os manifestos e a receita verificada. A DLL separada foi extraída desse mesmo portátil, não de uma pasta build antiga.
-- DLL real: SHA256 `BEC485B524300EED2C447642475A86E80E0AA677905DFA2AA1FEB2B2CC19405E`.
-- Ícone: SHA256 `920D88139D7434AEF561AB772113738BCA93346F62194B4DB0792674A50E77BA`.
-- Foram excluídos fontes próprios, bundles Git, PDB/OBJ/LIB/EXP, configuração pessoal, firmware e logs brutos dos arquivos públicos.
+Fonte privada compilada: `a830083d0dd55eb3e19c1ade91993c413c20ea5a`. Backup anterior com 397 arquivos comparados por SHA256; commit-base privado `727f2e5fdd5eb387b8c9cf540914dbe4c5aea753`. Os 39 arquivos protegidos de firmware/DLL, telemetria, serial, Logitech e instalador original permanecem iguais ao backup.
 
-O relatório anterior de 13/11/2026 registra testes de instalador em fixture; é evidência histórica, não reexecução nesta sessão. O instalador de produção não foi executado aqui. Build metadata preserva o commit privado original: `3f1d92380a33b0e450604ebbaf790331b7e131e4`.
+A DLL continua com SHA256 `BEC485B524300EED2C447642475A86E80E0AA677905DFA2AA1FEB2B2CC19405E`. Nenhum ensaio de DLL nativa ou firmware foi reexecutado nesta atualização visual; os resultados anteriores pertencem à RC11.17.
 
-## Pendências manuais
-
-Validar instalação/atualização em Windows limpo; janela/bandeja/F9 e DPI reais; recepção dos canais na versão instalada do ETS2; LEDs por modelo; STOP/watchdog/desconexão e calibração; tensão, corrente e temperatura da montagem, especialmente as cargas paralelas. A candidata não recebe classificação Stable por testes sintéticos.
-
-Fontes e evidências completas permanecem no workspace privado. Nenhum driver, Registro, biblioteca global, firmware ou instalação pessoal foi alterado durante esta preparação.
+Não foram executados ETS2 real, instalação pessoal, gravação de firmware, alterações de Registro/dispositivos, motores ou LEDs físicos. O setup continua sem assinatura digital e a entrega permanece pré-lançamento. Conferir os SHA256 dos downloads da mesma release. Configurações antigas são preservadas; use os botões do novo menu para aplicar os novos padrões.
