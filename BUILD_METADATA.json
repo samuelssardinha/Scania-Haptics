@@ -1,0 +1,15 @@
+{
+  "BuildId": "v230-rc11-hud-adaptativa-20261113",
+  "SourceCommit": "3f1d92380a33b0e450604ebbaf790331b7e131e4",
+  "TimestampUtc": "2026-11-13T21:04:14.1021265Z",
+  "AppFileVersion": "2.3.0.17",
+  "DllFileVersion": "2.3.0.12",
+  "Architecture": "win-x64",
+  "Runtime": "10.0.14",
+  "SelfContained": true,
+  "NativeDllRebuilt": true,
+  "FirmwareChanged": false,
+  "Candidate": true,
+  "HardwareValidated": false,
+  "SetupSigned": false
+}
