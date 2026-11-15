@@ -2,7 +2,7 @@ Nota da publicacao: este documento descreve contratos tecnicos e seu historico. 
 
 # Vehicle1 — extensão opcional RC11
 
-Autorização de 13/11/2026: o usuário aprovou a extensão DLL incluindo pressão e temperatura. Fonte da verdade: `DLL/telemetry_vehicle.h`, integração em `DLL/scania_haptics_v2.cpp`, cabeçalhos SDK locais em `tests/outputs/autostart_rc7/v4/sdk/include/common/`. Não altera firmware, comandos seriais, exports ou estruturas V1/V2/V3/V4.1/Signals1/Jobs1/Indicators1/Instruments1.
+Autorização de 13/11/2026: o usuário aprovou a extensão DLL incluindo pressão e temperatura. Fonte da verdade: `DLL/telemetry_vehicle.h`, integração em `DLL/scania_haptics_v2.cpp`, cabeçalhos do SDK oficial. Não altera firmware, comandos seriais, exports ou estruturas V1/V2/V3/V4.1/Signals1/Jobs1/Indicators1/Instruments1.
 
 Mapa `Local\ScaniaETS2TelemetryVehicle1`; mutex `Local\ScaniaETS2TelemetryVehicle1.Guard`. Publicador vinculado à concessão exclusiva V4 existente. Little endian, 256 bytes, `#pragma pack(1)` e alinhamento de 8 bytes. Versão 1.0, magic `0x31484556` (VEH1).
 

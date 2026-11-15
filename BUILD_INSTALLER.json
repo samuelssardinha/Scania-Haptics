@@ -1,10 +1,12 @@
 {
-  "AppVersion": "2.3.0.18",
-  "HelperVersion": "2.3.0.17",
-  "DllVersion": "2.3.0.12",
-  "NativeDllUnchanged": true,
-  "FirmwareChanged": false,
+  "CurrentRelease": "RC11.20",
+  "NewInstallerProduced": true,
+  "AppVersion": "2.3.0.20",
+  "InnoSetupVersion": "6.7.4",
   "SetupSigned": false,
   "ProductionSetupExecuted": false,
-  "SourceCommit": "a830083d0dd55eb3e19c1ade91993c413c20ea5a"
+  "SameAppPayloadAsPortable": true,
+  "ConfigurationOverwritten": false,
+  "GameDllInstalledAutomatically": false,
+  "FirmwareIncluded": false
 }

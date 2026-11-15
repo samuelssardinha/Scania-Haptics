@@ -4,7 +4,7 @@ Nota da publicacao: este documento descreve contratos tecnicos e seu historico. 
 
 09/11/2026. Este documento substitui o [plano 4.0 de 256 bytes](PROTOCOLO_TELEMETRIA_V4_PLANO_4_0.md), que nunca foi implementado/distribuído. RC1.2 usa **384 bytes, major=4, minor=1**, para adicionar combustível/autonomia/navegação/hodômetro. V1/V2/V3 permanecem nos mesmos nomes, magic, tamanhos e offsets. Não muda firmware/serial/HID/USB nem autoriza atuação.
 
-Fontes primárias: [SDK SCS](https://modding.scssoft.com/wiki/Documentation/Engine/SDK/Telemetry) e [ZIP oficial 1.16](https://download.eurotrucksimulator2.com/scs_sdk_1_16.zip), SHA256 `49821E25568F4D7E462135F577F8FEF2AB197326404F2C1DAEF139B8F3DC5E69`. Headers extraídos somente em tests/outputs/rc12/sdk para conferência/testes; sem instalar dependências. Leitura de canais/configurações/gameplay e comparação ABI x64 contra esses headers executadas.
+Fontes primárias: [SDK SCS](https://modding.scssoft.com/wiki/Documentation/Engine/SDK/Telemetry) e [ZIP oficial 1.16](https://download.eurotrucksimulator2.com/scs_sdk_1_16.zip), SHA256 `49821E25568F4D7E462135F577F8FEF2AB197326404F2C1DAEF139B8F3DC5E69`. Headers conferidos em ambiente isolado de testes; sem instalar dependências. Leitura de canais/configurações/gameplay e comparação ABI x64 contra esses headers executadas.
 
 ## Objetos e exclusividade
 

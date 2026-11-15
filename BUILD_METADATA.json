@@ -1,15 +1,20 @@
 {
-  "BuildId": "v230-rc11-18-topo-titanium-20261114",
-  "SourceCommit": "a830083d0dd55eb3e19c1ade91993c413c20ea5a",
-  "TimestampUtc": "2026-11-14T20:35:53.8554913Z",
-  "AppFileVersion": "2.3.0.18",
+  "BuildId": "v230-rc11-20-meu-cockpit-113h-20261115",
+  "SourceOrigin": "Workspace local salvo, recompilado apos incorporar perfil inicial e mostradores 113H",
+  "SourceReferenceBeforeChanges": "3b5475daed32b6cb070063205ffe516aea09e735",
+  "SourceManifestSHA256": "0C190BAA05A8F87155C5D80780786995372F58BC1B144126D45B66C18C8B402B",
+  "SourceFilesCount": 155,
+  "AppFileVersion": "2.3.0.20",
+  "HelperVersion": "2.3.0.17",
   "DllFileVersion": "2.3.0.12",
   "Architecture": "win-x64",
-  "Runtime": "10.0.14",
   "SelfContained": true,
+  "Runtime": "10.0.14",
   "NativeDllRebuilt": false,
   "FirmwareChanged": false,
-  "Candidate": true,
   "HardwareValidated": false,
-  "SetupSigned": false
+  "Candidate": true,
+  "DefaultProfile": "Meu cockpit",
+  "NewInstallAutoConnect": true,
+  "NewInstallMotorLevel": 0
 }

@@ -1,12 +1,12 @@
 # Guia da versão atual
 
-Referência: RC11.18 de 14/11/2026, App 2.3.0.18, gerenciador 2.3.0.17, DLL 2.3.0.12. A pasta histórica v2.2.12 do projeto não indica a versão do aplicativo atual.
+Referência: RC11.20, App 2.3.0.20, gerenciador 2.3.0.17 e DLL 2.3.0.12. Instalador e portátil autocontidos Windows x64.
 
-## Posição e restauração da HUD
+## Aparência, posição e padrões
 
-Abra **HUD e instrumentos → Layout e mouse**. A primeira seção traz **Posição da HUD: Topo / Parte inferior**, margens independentes e **Restaurar HUD padrão**. Novas configurações usam Topo, Dock compacta, paleta Titanium e placas no limite da via/cruise. A restauração mantém ativação, monitor e atalho, sem alterar motores, COM ou inicialização do Windows.
+O perfil de primeira execução Meu cockpit usa Nordic Light; Dark Glass Pro continua disponível na restauração explícita dos padrões; Glass Clear, Liquid Glass, Frosted Neon e os estilos anteriores permanecem disponíveis. Régua RPM ligada com 150 LEDs, legendas ocultas e Alt+A são os novos padrões; valores já salvos são respeitados. O atalho exige HUD habilitada.
 
-Configurações antigas de tema/layout/formatos são preservadas. Use **Usar padrão: topo + Titanium + placas** para aplicar o novo preset sem restaurar os demais ajustes visuais. O cálculo considera painel, régua e luzes para que a HUD completa caiba no topo.
+Em **HUD e instrumentos → Layout e mouse**, escolha Topo/Parte inferior, margens e restauração. Restaurar somente a HUD conserva ativação, monitor e atalho. Temas, escopos e geometria ficam em Aparência e temas. [Novidades e imagens](RC11_20.md).
 
 ## Componentes e dados
 
@@ -25,21 +25,21 @@ flowchart LR
 
 A DLL registra canais do SDK SCS e publica dados em mapas locais de memória; o App confere validade e mantém um snapshot para seus módulos. A serial tem um único proprietário, evitando acesso concorrente à COM. Os seletores HID funcionam sem depender do App. A DLL e o firmware têm números de protocolo independentes da versão comercial.
 
-## Instalação, atualização e restauração
+## Abrir, atualizar e retornar
 
-O instalador destina-se ao Windows 11 x64, sem necessidade de instalar .NET separadamente. Use uma conta com acesso de escrita à pasta escolhida. Os arquivos ficam por padrão em `%LOCALAPPDATA%/Programs/ScaniaHaptics`; as preferências ficam em `%LOCALAPPDATA%/ScaniaHaptics/config.json`.
+Baixe `Scania_Haptics_RC11_20_Portavel_win-x64.zip`, confira o SHA256, encerre a versão antiga pela bandeja e extraia tudo em pasta nova. Abra `ScaniaHaptics.exe`; .NET já está incluído. Também é possível usar o novo instalador RC11.20. Veja [instalação e atualização](INSTALAR_RC11_20.md).
 
-Encerre App, observador e gerenciador antes de atualizar. O setup bloqueia arquivos em uso, preserva configurações e cria backups verificados dos arquivos substituídos em `InstallerBackups`. Não encerra seus processos à força. Abrir o App ou configurar o plugin no fim é opcional.
+O portátil usa a mesma instância única e as preferências existentes em `%LOCALAPPDATA%/ScaniaHaptics/config.json`. Exporte sua configuração em **Importar / Exportar / Perfis** antes de mudar os padrões. A importação valida, cria backup e deixa saídas paradas/desconectadas. [Exportação, importação e restauração](IMPORTAR_EXPORTAR_PERFIS.md).
 
-Para instalar a DLL, feche o ETS2 e use o gerenciador. O destino é exclusivamente `bin/win_x64/plugins/scania_haptics_v2.dll` na raiz escolhida. Arquivos em Program Files podem exigir permissão de escrita. Não copie plugins com o jogo aberto. Para rollback, use a restauração oferecida pelo gerenciador; não substitua outros plugins.
+Para configurar a DLL opcional incluída, feche o ETS2 e use o gerenciador. O destino continua exclusivamente `bin/win_x64/plugins/scania_haptics_v2.dll` na raiz escolhida. A versão da DLL não mudou nesta rodada; não é necessário substituí-la apenas para experimentar os novos temas. O gerenciador preserva o arquivo anterior para rollback.
 
-Para retornar o App, feche-o e restaure o backup ou reinstale a entrega anterior. Preserve também uma cópia privada de `config.json` e `.bak` se quiser restaurar exatamente suas preferências. Desinstalação preserva dados por padrão; a remoção explícita é limitada aos dois arquivos conhecidos. A DLL do jogo é gerenciada separadamente.
+Para voltar ao aplicativo anterior, encerre a candidata e abra a versão antiga. Use seu backup de configuração se precisar restaurar exatamente o perfil anterior. A DLL do jogo é gerenciada separadamente.
 
 ## Aplicativo
 
 As páginas agrupam operação, motores/testes, dispositivos e HUD. A HUD permite ativação, legenda, fonte e formato individual, layouts, escala, alinhamento e ordem. Componentes desligados deixam de reservar espaço. Arrastar/trocar/remover componentes é uma operação do editor no desktop; a visualização durante o jogo não deve capturar controles indevidamente.
 
-Os ajustes gráficos não alteram marcha/transmissão do jogo. Cruise, retarder, pressões e indicadores dependem de canais válidos; não se inferem ABS/TCS ou níveis ausentes. A simulação oferece valores sintéticos e pode comandar dispositivos, conforme as opções de atuação. Ela não comprova recepção do ETS2.
+Os ajustes gráficos não alteram marcha/transmissão do jogo. Cruise, retarder, pressões e indicadores dependem de canais válidos; não se inferem ABS/TCS ou níveis ausentes. A simulação oferece valores sintéticos e pode comandar dispositivos habilitados/conectados. Inicia explicitamente, cede à telemetria real e é encerrada ao minimizar/ocultar. Não reinicia automaticamente após o jogo e não comprova recepção do ETS2.
 
 Fechar para a bandeja e inicialização automática são preferências. Restaure pelo menu da bandeja ou pelas opções/hotkeys configuradas; para atualizar, escolha sair completamente. A proteção de instância única evita execução concorrente normal. O instalador não ativa AutoStart por conta própria; o App respeita preferências anteriores quando aberto.
 
@@ -73,17 +73,17 @@ Referências completas de offsets e sincronismo: [V4](PROTOCOLO_TELEMETRIA_V4.md
 
 ## Compilação e distribuição
 
-Os fontes originais são privados; este repositório público não permite reconstruir o App/DLL por si só. No workspace privado: SDK .NET 10.0.403 fixado por global.json, runtime e System.IO.Ports 10.0.14, MSVC C++17 x64 e Inno Setup 6.7.4. A RC11.18 usa `tools/Preparar_HUD_Topo.ps1`: compila o App a partir de snapshot commitado, reaproveita DLL/gerenciador/runtime/ícone verificados da RC11 anterior e gera instalador em destino novo. O builder nativo anterior é `tools/Preparar_RC11_Completa.ps1`, que compila a DLL `/MT` com recurso de versão. Ambos verificam retornos e manifestos.
+Os fontes originais permanecem privados. O aplicativo foi compilado com SDK .NET 10.0.403, runtime e System.IO.Ports 10.0.14, para win-x64 autocontido. A origem e o hash do manifesto dos fontes atuais constam em BUILD_METADATA.json; o repositório público contém documentação e imagens.
 
-O script antigo COMPILAR_DLL.bat não é a receita exata desta release: não inclui o recurso de versão nem explicita `/MT`. Scripts de build e instalação têm finalidades diferentes; não execute instaladores para verificar compilação. Nenhum SDK, compilador ou firmware binário integra os downloads públicos.
+O aplicativo foi recompilado dos fontes atuais com o perfil incorporado. DLL/gerenciador/runtime/avisos foram conferidos e reaproveitados da candidata anterior. Nenhum compilador, fonte próprio, objeto, símbolo de depuração, configuração pessoal ou firmware integra os downloads.
 
 ## Verificação e problemas comuns
 
 ```powershell
-Get-FileHash .\Scania_Haptics_RC11_Completo_Setup_x64.exe -Algorithm SHA256
+Get-FileHash .\Scania_Haptics_RC11_20_Portavel_win-x64.zip -Algorithm SHA256
 ```
 
-Compare o resultado com SHA256SUMS.txt baixado da mesma release. A versão não é assinada digitalmente. Os testes e suas limitações estão em [VALIDACAO.md](VALIDACAO.md).
+Compare o resultado com SHA256SUMS.txt baixado da mesma release. Os executáveis não são assinados digitalmente. Os testes e suas limitações estão em [VALIDACAO.md](VALIDACAO.md).
 
 | Sintoma | Conferir |
 |---|---|
@@ -94,4 +94,5 @@ Compare o resultado com SHA256SUMS.txt baixado da mesma release. A versão não 
 | Campo indisponível | Canal opcional ausente ou sem validade; não substituir por estado inventado |
 | Janela na bandeja | Restaurar pelo menu; para atualizar, encerrar também o observador |
 
-Não foram executados nesta preparação: ETS2 real, instalação pessoal, alteração de Registro, firmware/bootloader, motores, LEDs físicos ou medições elétricas. Relatos anteriores e testes sintéticos não substituem esses ensaios.
+Não foram executados nesta preparação: ETS2 real, instalação pessoal em produção, alteração do Registro pessoal, firmware/bootloader, motores, LEDs físicos ou medições elétricas. Relatos anteriores e testes sintéticos não substituem esses ensaios.
+
